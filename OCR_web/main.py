@@ -34,9 +34,20 @@ class UploadImages(Resource):
             final_texts = ocr_service.recognit_many(img, fin_boxes)
             restructure = ocr_service.restructure(img, fin_boxes, final_texts)
 
-            new_restruct= "\n".join(["".join(row) for row in restructure])
+            fisrt_char_line = 0
 
-            result.append(new_restruct)
+            # get rid of all white space line
+            new_restructure_box = []
+
+            for row in restructure:
+                if set("".join(row)) != {' '}:
+                    new_restructure_box.append(row)
+
+
+
+            new_restructure_box = "\n".join(["".join(row) for row in new_restructure_box])
+
+            result.append(new_restructure_box)
 
         return result
 
