@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/bootstrap.min.css') }}" />
+  </head>
+  <body>
+    <h1>Hello</h1>
+    <input id="select-image" type="file" accept=".jpg" name="image" multiple="multiple"/>
+    <button id="btn-convert" type="button" name="button" class="btn btn-primary">Button</button>
+    <textarea id="text-result" class="form-control" rows="3" name="description"></textarea>
+
+    <script src="{{url_for('static', filename='scripts/jquery-3.4.1.js')}}"></script>
+    <script src="{{url_for('static', filename='scripts/bootstrap.js')}}"></script>
+    <script src="{{url_for('static', filename='scripts/bootbox.js')}}"></script>
+
+    <script>
+        $(document).ready(function () {
+
+          $("#btn-convert").on("click", function () {
+              var files = $("#select-image").get(0).files;
+              var data = new FormData;
+
+              for (var i = 0; i < files.length; i++)
+              {
+                data.append("files", files[i]);
+              }
+
+              $.ajax({
+                      url: "/api/upload",
+                      method: "Post",
+                      data: data,
+                      contentType: false,
+                      processData: false,
+                      async:true,
+                      success: function (response) {
+                        $("#text-result").val(response);
+                      },
+              });
+
+          });
+
+        });
+    </script>
+  </body>
+</html>
