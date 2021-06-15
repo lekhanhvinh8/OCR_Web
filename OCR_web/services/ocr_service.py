@@ -68,7 +68,7 @@ class OCRService():
         optimizer = Adam(lr=0.001, beta_1=0.9, beta_2=0.999, clipnorm=1.0)
         model_recognition.compile(optimizer = optimizer)
 
-        model_recognition.load_weights(r'services/C_LSTM_best2.hdf5')
+        model_recognition.load_weights(r'services/C_LSTM_best_3.hdf5')
 
         # Get the prediction model by extracting layers till the output layer
         prediction_model_recognition = keras.models.Model(
@@ -259,7 +259,9 @@ class OCRService():
             if box[3] - box[1] < min_height:
                 min_height = box[3] - box[1]
 
-        restructure_box = [[' ' for x in range(int(width / min_width))] for y in range(int(height / min_height))]
+        new_width = int(width / min_width) + 1
+        new_height = int(height / min_height) + 1
+        restructure_box = [[' ' for x in range(new_width)] for y in range(new_height)]
 
         for i in range(0, len(fin_boxes)):
             x = int(fin_boxes[i][0] / min_width)
@@ -267,5 +269,22 @@ class OCRService():
             text = final_texts[i][0]
 
             restructure_box[y][x] = text
+
+        #merge 2 neighboring lines
+        i = 0
+        while i < new_height - 1:
+            can_merge = True
+            for j in range(new_width):
+                if restructure_box[i][j] != ' ' and restructure_box[i+1][j] != ' ':
+                    can_merge = False
+
+            if can_merge:
+                for j in range(new_width):
+                    if restructure_box[i][j] == ' ':
+                        restructure_box[i][j] = restructure_box[i+1][j]
+
+                del restructure_box[i + 1]
+                new_height -= 1
+            i += 1
 
         return restructure_box

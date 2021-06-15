@@ -47,9 +47,11 @@ class UploadImages(Resource):
 
             new_restructure_box = "\n".join(["".join(row) for row in new_restructure_box])
 
+            result.append("---------------------------------------------------------------")
             result.append(new_restructure_box)
 
-        return result
+
+        return "\n".join(result)
 
 api.add_resource(UploadImages, "/api/upload")
 
