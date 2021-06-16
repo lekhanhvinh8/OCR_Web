@@ -41,9 +41,9 @@ class UploadImages(Resource):
 
             for row in restructure:
                 if set("".join(row)) != {' '}:
-                    new_restructure_box.append(row)
+                    new_row = [word for word in row if word != " "]
 
-
+                    new_restructure_box.append(" ".join(new_row))
 
             new_restructure_box = "\n".join(["".join(row) for row in new_restructure_box])
 

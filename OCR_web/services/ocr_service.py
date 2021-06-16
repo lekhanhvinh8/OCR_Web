@@ -270,21 +270,44 @@ class OCRService():
 
             restructure_box[y][x] = text
 
-        #merge 2 neighboring lines
+        #merge k neighboring lines
         i = 0
-        while i < new_height - 1:
+        max_neighbors = 1
+
+        while i < new_height - max_neighbors:
+            #print(i, "----------------------------")
+            #print('.'.join(restructure_box[i]))
+            if set(''.join(restructure_box[i])) == {' '}:
+                i += 1
+                continue
+
             can_merge = True
             for j in range(new_width):
-                if restructure_box[i][j] != ' ' and restructure_box[i+1][j] != ' ':
+                count_not_space = 0
+                for k in range(0, max_neighbors + 1):
+                     if restructure_box[i+k][j] != ' ':
+                        count_not_space += 1
+                if count_not_space > 1:
                     can_merge = False
+                    break
 
             if can_merge:
                 for j in range(new_width):
                     if restructure_box[i][j] == ' ':
-                        restructure_box[i][j] = restructure_box[i+1][j]
+                        for k in range(1, max_neighbors + 1):
+                            if restructure_box[i+k][j] != ' ':
+                                #print(k, restructure_box[i+k][j])
+                                restructure_box[i][j] = restructure_box[i+k][j]
+                                break
 
-                del restructure_box[i + 1]
-                new_height -= 1
+
+                for k in range(1, max_neighbors + 1):
+                    #print(i + 1, ".".join(restructure_box[i + 1]))
+                    del restructure_box[i + 1]
+
+                new_height -= max_neighbors
+
+
             i += 1
 
         return restructure_box

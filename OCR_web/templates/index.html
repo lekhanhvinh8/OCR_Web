@@ -75,7 +75,7 @@
     .result-area {
       width: 700px;
       height: 100%;
-      /* margin: 10px; */
+      margin: 10px;
       float: left;
     }
 
@@ -92,7 +92,7 @@
 
     .result-textarea {
       width: 100%;
-      height: 90%;
+      height: 82%;
       box-sizing: border-box;
     }
 
@@ -113,6 +113,18 @@
       margin: auto;
       font-weight: 800;
     }
+
+    .download-button {
+      display: inline-block;
+      padding: 5px 10px;
+      cursor: pointer;
+      background-color: #0077b6;
+      color: white;
+      border-radius: 8px;
+      margin: 5px 0 5px 0;
+      font-size: 15px;
+      border: none;
+    }
   </style>
 </head>
 
@@ -131,7 +143,8 @@
         </label>
       </div>
       <div>
-        <img id="avatar-preview" class="img-thumbnail" style="width: 100%; height: 100%; object-fit: cover" src="#" />
+        <img id="avatar-preview" class="img-thumbnail" style="width: 80%; height: 80%; object-fit: scale-down"
+          src="{{url_for('static', filename='images/default_image.jpg')}}" />
       </div>
     </div>
 
@@ -144,6 +157,9 @@
     <div class="result-area">
       <span class="output-text">Extracted Text:</span>
       <textarea class="result-textarea" id="text-result" class="form-control" rows="3" name="description"></textarea>
+      <button id="btn-download" class="download-button">
+        Export to TXT
+      </button>
     </div>
   </div>
 
@@ -167,6 +183,12 @@
 
           reader.readAsDataURL(input.files[0]); // convert to base64 string
         }
+      });
+
+      $("#btn-download").on("click", function () {
+        var text = $("#text-result").val();
+        console.log(text);
+        saveTextAsFile(text,'download.txt');
       });
 
       $("#btn-convert").on("click", function () {
@@ -199,6 +221,28 @@
         });
 
       });
+
+      function saveTextAsFile(textToWrite, fileNameToSaveAs) {
+          var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+          var downloadLink = document.createElement("a");
+          downloadLink.download = fileNameToSaveAs;
+          downloadLink.innerHTML = "Download File";
+          if (window.webkitURL != null) {
+          // Chrome allows the link to be clicked
+          // without actually adding it to the DOM.
+          downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+          }
+          else {
+          // Firefox requires the link to be added to the DOM
+          // before it can be clicked.
+          downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+          downloadLink.onclick = destroyClickedElement;
+          downloadLink.style.display = "none";
+          document.body.appendChild(downloadLink);
+          }
+
+          downloadLink.click();
+      }
 
     });
   </script>
