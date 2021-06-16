@@ -14,6 +14,10 @@ api = Api(app)
 def index():
     return render_template('index.html')
 
+@app.route('/ourwork')
+def ourwork():
+    return render_template('ourwork.html')
+
 class UploadImages(Resource):
     def post(self):
         if 'files' not in request.files:

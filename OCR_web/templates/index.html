@@ -1,251 +1,186 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/bootstrap.min.css') }}" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> Học sâu - Nhóm 3 </title>
+    <!--
 
-  <style>
-    html,
-    body {
-      height: 100%;
-      background-image: url("https://www.linkpicture.com/q/cool-background.png");
-    }
 
-    .buttonload {
-      background-color: #04AA6D;
-      /* Green background */
-      border: none;
-      /* Remove borders */
-      color: white;
-      /* White text */
-      padding: 12px 24px;
-      /* Some padding */
-      font-size: 16px;
-      /* Set a font-size */
-      width: 120px;
-      height: 55px;
-      border-radius: 25px;
-    }
+    -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/bootstrap.min.css') }}" />
+    <link rel="icon"  type="image/png" href="{{ url_for('static',filename='img/favicon.png') }}"/>
+    <!-- load CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300">  <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">                                  <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='fontawesome/css/fontawesome-all.min.css') }}">                <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='slick/slick.css') }}"/>                       <!-- http://kenwheeler.github.io/slick/ -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='slick/slick-theme.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/tooplate-style.css') }}">                               <!-- Templatemo style -->
 
-    /* Add a right margin to each icon */
-    .fa {
-      margin-left: -12px;
-      margin-right: 8px;
-    }
-
-    input[type="file"] {
-      display: none;
-    }
-
-    .container {
-      height: 80%;
-      width: 80%;
-      display: flex;
-      justify-content: center;
-      margin: auto;
-      padding-top: 10px;
-      background-color: white;
-      border-radius: 10px;
-      position: relative;
-    }
-
-    .custom-file-upload {
-      display: inline-block;
-      padding: 10px 20px;
-      cursor: pointer;
-      background-color: #ccc;
-      color: white;
-      border-radius: 8px;
-      margin: 0 0 10px 0;
-      border: 1px dashed darkblue;
-      font-size: 20px;
-    }
-
-    .image-area {
-      width: 400px;
-      height: 100%;
-      margin: 10px;
-      float: left;
-    }
-
-    .result-area {
-      width: 700px;
-      height: 100%;
-      margin: 10px;
-      float: left;
-    }
-
-    .button-convert-area {
-      width: 150px;
-      height: 100%;
-      margin: 10px;
-      float: left;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-    }
-
-    .result-textarea {
-      width: 100%;
-      height: 82%;
-      box-sizing: border-box;
-    }
-
-    .output-text {
-      color: #264653;
-      font-size: 20px;
-    }
-
-    .heading {
-      display: flex;
-      justify-content: center;
-      padding: 20px 0 20px 0;
-    }
-
-    .heading-text {
-      font-size: 50px;
-      color: white;
-      margin: auto;
-      font-weight: 800;
-    }
-
-    .download-button {
-      display: inline-block;
-      padding: 5px 10px;
-      cursor: pointer;
-      background-color: #0077b6;
-      color: white;
-      border-radius: 8px;
-      margin: 5px 0 5px 0;
-      font-size: 15px;
-      border: none;
-    }
-  </style>
+    <script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this in a modern browser such as latest version of Chrome or Microsoft Edge.");</script>
 </head>
 
 <body>
-  <div class="heading">
-    <p class="heading-text">
-      Text Extractor Tool
-    </p>
-  </div>
-  <div class="container">
-    <div class="image-area">
-      <div>
-        <label class="custom-file-upload">
-          <input id="select-image" type="file" accept=".jpg" name="image" multiple="multiple" />
-          + Select images
-        </label>
-      </div>
-      <div>
-        <img id="avatar-preview" class="img-thumbnail" style="width: 80%; height: 80%; object-fit: scale-down"
-          src="{{url_for('static', filename='images/default_image.jpg')}}" />
-      </div>
-    </div>
+<div id="tm-bg"></div>
+<div id="tm-wrap">
+    <div class="tm-main-content">
+        <div class="container tm-site-header-container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-md-col-xl-6 mb-md-0 mb-sm-4 mb-4 tm-site-header-col">
+                    <div class="tm-site-header">
+                        <h1 class="mb-4" style="font-size: 45px">Nhóm 3</h1>
+                        <img src="{{ url_for('static',filename='img/underline.png')}}" class="img-fluid mb-4">
+                        <p>XÂY DỰNG ỨNG DỤNG WEB NHẬN DẠNG
+                            KÝ TỰ QUANG HỌC
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="content">
+                        <div class="grid">
+                            <div class="grid__item" id="home-link">
+                                <div class="product">
+                                    <div class="tm-nav-link">
+                                        <i class="fas fa-home fa-3x tm-nav-icon"></i>
+                                        <span class="tm-nav-text">Welcome</span>
+                                        <div class="product__bg"></div>
+                                    </div>
+                                    <div class="product__description">
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h1 class="tm-page-title">Welcome to Group 3</h1>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                <img src="{{ url_for('static',filename='img/anh1.jpg')}}" class="img-fluid mb-3">
+                                                <p style="font-size: 15px">OCR sử dụng để chuyển đổi các loại tài liệu từ hình ảnh, chẳng hạn như tài liệu được scan từ ảnh Scan như giấy CMND,giấy khai sinh,...đây là công nghệ xử lý ảnh khá phức tạp nhưng có nhiều ứng dụng rộng rãi,thiết thực,nguồn tài nguyên mã nguồn để tham khảo trong lĩnh vực này cũng khá ít. </p>
+                                                <!--                                                    <p>Please tell your friends about <a rel="nofollow" href="https://fb.com/tooplate" target="_parent">Tooplate</a>. That will be very helpful for us. Thank you.</p>    -->
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                <p style="font-size: 15px">Với các kiến thức đã học và sự hướng dẫn tận tình của TS. Nguyễn Thien Bảo, hôm nay nhóm chúng tôi đã xây dựng thành công trang web này với khả năng trích xuất chữ trong hình ảnh sang dạng Text.</p>
+                                                <!--                                                    <p>If you have any kind of question or comment, please feel free to <a rel="nofollow" href="https://www.tooplate.com/contact" target="_parent">contact us</a>. You are welcome.</p>-->
+                                                <img src="{{ url_for('static',filename='img/anh2.jpg')}}" class="img-fluid">
+                                            </div>
+                                        </div>
 
-    <div class="button-convert-area">
-      <button id="btn-convert" class="buttonload btn">
-        Convert
-      </button>
-    </div>
+                                    </div>
+                                </div>
+                            </div>
 
-    <div class="result-area">
-      <span class="output-text">Extracted Text:</span>
-      <textarea class="result-textarea" id="text-result" class="form-control" rows="3" name="description"></textarea>
-      <button id="btn-download" class="download-button">
-        Export to TXT
-      </button>
-    </div>
-  </div>
+                            <div class="grid__item" id="team-link">
+                                <div class="product">
+                                    <div class="tm-nav-link">
+                                        <i class="fas fa-users fa-3x tm-nav-icon"></i>
+                                        <span class="tm-nav-text">Our Team</span>
+                                        <div class="product__bg"></div>
+                                    </div>
+                                    <div class="product__description">
+                                        <div class="p-sm-4 p-2">
+                                            <div class="row mb-3">
+                                                <div class="col-12">
+                                                    <h1 class="tm-page-title">Our Team</h1>
+                                                </div>
+                                            </div>
+                                            <div class="row tm-reverse-sm">
+                                                <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                                                    <br>
+                                                    <p class="mb-4" style="font-size: 22px"!important>- 18110395 Lê Khánh Vinh</p>
+                                                    <p class="mb-4" style="font-size: 22px">- 18110331 Phạm Xuân Nhuận</p>
+                                                    <p class="mb-4" style="font-size: 22px">- 18110385 Phạm Nhựt Trường</p>
+                                                    <p class="mb-4" style="font-size: 22px">- 18110282 Hồ Văn Hiếu</p>
+                                                    <p class="mb-4" style="font-size: 22px">- 18110350 Lê Tấn Quý</p>
+                                                    <p class="mb-4" style="font-size: 22px">- 18110303 Hồ Quốc Khánh</p>
+                                                </div>
+                                                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-lg-0 mb-sm-4 mb-4">
+                                                    <img src="{{ url_for('static',filename='img/team.jpg')}}" class="img-fluid" style="height: 380px; width: 220px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-  <script src="{{url_for('static', filename='scripts/jquery-3.4.1.js')}}"></script>
-  <script src="{{url_for('static', filename='scripts/bootstrap.js')}}"></script>
-  <script src="{{url_for('static', filename='scripts/bootbox.js')}}"></script>
+                            &emsp;&emsp;&emsp;&emsp;&emsp;     <div class="grid__item">
+                            <div class="product">
+                                <div class="tm-nav-link">
+                                    <i class="fas fa-handshake fa-3x tm-nav-icon"></i>
+                                    <span class="tm-nav-text">Our Work</span>
+                                    <div class="product__bg"></div>
+                                </div>
+                                <div class="product__description">
+                                    <div class="p-sm-4 p-2">
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h1 class="tm-page-title">Our Work</h1>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <p style="font-size: 17px">Để sử dụng trang web này một cách hiệu quả, bạn có thể làm theo các bước sau đây:</p>
+                                                <p style="font-size: 17px">  Bước 1: Chọn một hoặc nhiều tấm ảnh cần trích xuất chữ từ PC của bạn bằng cách nhấn vào “Chọn tệp”.</p>
+                                                <p style="font-size: 17px">  Bước 2: Chờ cho các ảnh đã load lên thành công. Sau đó, bạn bấm button “Convert” để trích xuất thông tin. Và nhận kết quả vào khung bên dưới.</p>
+                                                <p style="font-size: 17px">  Bước 3: Sau khi nhận kết quả, bạn có thể copy các chữ trong khung một cách thoải mái.</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="p-sm-4 p-2 tm-img-container">
+                                                    <a href="/ourwork"><button class="btn-block" style="height: 40px"> <span style="font-size: 15px">Cùng Trải Nghiệm</span></button></a>
 
-  <script>
-    $(document).ready(function () {
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-      $("#select-image").change(function () {
-        isImageChange = true;
+        </div>
+        <footer>
+            <p class="small tm-copyright-text">Copyright &copy; <span class="tm-current-year">2021</span> Học sâu - Nhóm 3 <
+        </footer>
+    </div> <!-- .tm-main-content -->
+</div>
+<!-- load JS -->
+<script src="{{ url_for('static',filename='js/jquery-3.2.1.slim.min.js') }}"></script>         <!-- https://jquery.com/ -->
+<script src="{{ url_for('static',filename='slick/slick.min.js') }}"></script>                  <!-- http://kenwheeler.github.io/slick/ -->
+<script src="{{ url_for('static',filename='js/anime.min.js') }}"></script>                     <!-- http://animejs.com/ -->
+<script src="{{ url_for('static',filename='js/main.js')}}"></script>
+<script>
 
-        var input = this;
+    function setupFooter() {
+        var pageHeight = $('.tm-site-header-container').height() + $('footer').height() + 100;
 
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            $('#avatar-preview').attr('src', e.target.result);
-          }
+        var main = $('.tm-main-content');
 
-          reader.readAsDataURL(input.files[0]); // convert to base64 string
+        if($(window).height() < pageHeight) {
+            main.addClass('tm-footer-relative');
         }
-      });
-
-      $("#btn-download").on("click", function () {
-        var text = $("#text-result").val();
-        console.log(text);
-        saveTextAsFile(text,'download.txt');
-      });
-
-      $("#btn-convert").on("click", function () {
-        var files = $("#select-image").get(0).files;
-        var data = new FormData;
-
-        for (var i = 0; i < files.length; i++) {
-          data.append("files", files[i]);
+        else {
+            main.removeClass('tm-footer-relative');
         }
+    }
 
-        var icon = '<i class="fa fa-circle-o-notch fa-spin btn-icon"></i> Loading';
-        $("#btn-convert").empty();
-        $("#btn-convert").append(icon);
-        $("#btn-convert").attr("disabled", true);
+    /* DOM is ready
+    ------------------------------------------------*/
+    $(function(){
 
-        $.ajax({
-          url: "/api/upload",
-          method: "Post",
-          data: data,
-          contentType: false,
-          processData: false,
-          async: true,
-          success: function (response) {
-            $("#btn-convert").attr("disabled", false);
-            $("#btn-convert").empty();
-            $("#btn-convert").append('Convert');
+        setupFooter();
 
-            $("#text-result").val(response);
-          },
+        $(window).resize(function(){
+            setupFooter();
         });
 
-      });
-
-      function saveTextAsFile(textToWrite, fileNameToSaveAs) {
-          var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
-          var downloadLink = document.createElement("a");
-          downloadLink.download = fileNameToSaveAs;
-          downloadLink.innerHTML = "Download File";
-          if (window.webkitURL != null) {
-          // Chrome allows the link to be clicked
-          // without actually adding it to the DOM.
-          downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
-          }
-          else {
-          // Firefox requires the link to be added to the DOM
-          // before it can be clicked.
-          downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-          downloadLink.onclick = destroyClickedElement;
-          downloadLink.style.display = "none";
-          document.body.appendChild(downloadLink);
-          }
-
-          downloadLink.click();
-      }
-
+        $('.tm-current-year').text(new Date().getFullYear());  // Update year in copyright
     });
-  </script>
-</body>
 
+</script>
+</body>
 </html>
